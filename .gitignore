@@ -1,0 +1,16 @@
+node_modules/
+dist/
+.sites-runtime/
+.wrangler/
+.env*
+!.env.example
+.dev.vars*
+outputs/
+*.tar.gz
+*.sqlite
+src/assets.generated.js
+
+# Keep the empty configuration example, never actual secrets.
+!.env.example
+exports/
+.elite-export-version
