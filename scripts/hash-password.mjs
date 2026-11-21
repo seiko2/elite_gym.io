@@ -37,7 +37,7 @@ async function hiddenQuestion(prompt) {
 try {
   let password;
   if (process.stdin.isTTY) {
-    password = await hiddenQuestion('New admin password (hidden): ');
+    password = await hiddenQuestion('Admin password to configure (hidden): ');
     const confirmation = await hiddenQuestion('Confirm password (hidden): ');
     if (password !== confirmation) throw new Error('Passwords do not match.');
   } else {
@@ -45,7 +45,7 @@ try {
     for await (const chunk of process.stdin) input += chunk;
     password = input.replace(/\r?\n$/, '');
   }
-  if (password.length < 12 || password.length > 128) throw new Error('Choose a password between 12 and 128 characters.');
+  if (password.length < 8 || password.length > 128) throw new Error('Choose an admin password between 8 and 128 characters.');
   const salt = randomBytes(16).toString('hex');
   const hash = pbkdf2Sync(password, Buffer.from(salt, 'hex'), 100000, 32, 'sha256').toString('hex');
   process.stdout.write(`pbkdf2_sha256$100000$${salt}$${hash}\n`);

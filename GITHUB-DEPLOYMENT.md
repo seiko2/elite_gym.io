@@ -49,7 +49,7 @@ Apply all pending schema migrations. This preserves existing records when updati
 npx wrangler@4 d1 migrations apply DB --remote --config wrangler.jsonc
 ```
 
-Configure a new administrator password. This helper hides terminal input and prints only a salted PBKDF2 hash:
+Configure your administrator password (8–128 characters). Enter the same password you intend to type into the admin login; you may reuse your original gym admin password. This helper hides terminal input and prints only a salted PBKDF2 hash:
 
 ```sh
 node scripts/hash-password.mjs
@@ -57,6 +57,8 @@ npx wrangler@4 secret put ADMIN_PASSWORD_HASH --config wrangler.jsonc
 ```
 
 Paste the generated hash into Wrangler's secret prompt. Keep it out of GitHub, source files, screenshots, and public configuration. The administrator username is `seiko`. The password from the original hosted Site is not included in this export.
+
+The Cloudflare Worker has its own secret configuration. If the login rejects your original password, rerun these two commands with that password and replace `ADMIN_PASSWORD_HASH` in the same Worker. Store only the generated `pbkdf2_sha256$...` value in that secret, without quotes or a variable-name prefix. Changing source code on GitHub does not copy or reset the password secret. Staff password changes still require 12 characters.
 
 Deploy:
 
