@@ -9,6 +9,7 @@ GitHub Pages serves static files. It cannot execute the Python reference program
 | Path | Purpose |
 | --- | --- |
 | `docs/` | Ready-to-upload GitHub Pages public website, with relative asset paths. |
+| `index.html` | Opens `docs/` when Pages publishes from the repository root, so the homepage shows the gym website. |
 | `public/` | Original frontend for the full application, including admin and staff workspaces. |
 | `src/` | Server API, authentication, membership, HR, payroll, review, and accounting code. |
 | `drizzle/` | Ordered database migrations. |

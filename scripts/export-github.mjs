@@ -56,6 +56,8 @@ await writeFile(path.join(destination, 'README.md'), [
 ].join('\n'));
 
 const docs = path.join(destination, 'docs');
+await writeFile(path.join(destination,'.nojekyll'),'');
+await writeFile(path.join(destination,'index.html'), '<!doctype html>\n<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="refresh" content="0; url=./docs/"><title>Elite Fitness Gym Kampala</title></head><body><main><h1>Elite Fitness Gym Kampala</h1><p><a href="./docs/">Open the gym website</a></p></main></body></html>\n');
 await mkdir(docs, {recursive:true});
 const excludedPublic = /^(?:admin|staff)\.(?:html|css|js)$/;
 for (const entry of await readdir(path.join(root, 'public'), {withFileTypes:true})) {
